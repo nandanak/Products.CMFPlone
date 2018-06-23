@@ -31,23 +31,22 @@ from zope.interface import implementer
 from zope.interface import classImplementsOnly, implementedBy
 
 # hackydihack
-+from plone.dexterity.content import Container
-+from five.localsitemanager.registry import PersistentComponents
-+from Products.CMFCore.interfaces import ISiteRoot, IContentish
-+from Products.Five.component.interfaces import IObjectManagerSite
-+from Products.CMFCore.permissions import AddPortalMember
-+from Products.CMFCore.permissions import SetOwnPassword
-+from Products.CMFCore.permissions import SetOwnProperties
-+from Products.CMFCore.permissions import MailForgottenPassword
-+from Products.CMFCore.permissions import RequestReview
-+from Products.CMFCore.permissions import ReviewPortalContent
-+from Products.CMFCore.Skinnable import SkinnableObjectManager
+from plone.dexterity.content import Container
+from five.localsitemanager.registry import PersistentComponents
+from Products.CMFCore.interfaces import ISiteRoot, IContentish
+from Products.Five.component.interfaces import IObjectManagerSite
+from Products.CMFCore.permissions import AddPortalMember
+from Products.CMFCore.permissions import SetOwnPassword
+from Products.CMFCore.permissions import SetOwnProperties
+from Products.CMFCore.permissions import MailForgottenPassword
+from Products.CMFCore.permissions import RequestReview
+from Products.CMFCore.permissions import ReviewPortalContent
+from Products.CMFCore.Skinnable import SkinnableObjectManager
 
 from zope.event import notify
 from zope.component.interfaces import ComponentLookupError
 
 from zope.traversing.interfaces import BeforeTraverseEvent
-
 
 PORTAL_SKINS_TOOL_ID = 'portal_skins'
 
@@ -63,9 +62,11 @@ class PloneSite(Container, SkinnableObjectManager, UniqueObject):
 
     def __getattr__(self, name):
         try:
-            return SkinnableObjectManager.__getattr__(self, name)
-        except AttributeError:
+            # Try DX
             return super(PloneSite, self).__getattr__(name)
+        except AttributeError:
+            # Check portal_skins
+            return SkinnableObjectManager.__getattr__(self, name)
 
     # Removes the 'Components Folder'
 
@@ -88,14 +89,8 @@ class PloneSite(Container, SkinnableObjectManager, UniqueObject):
         (View, ('isEffective',)),
         (ModifyPortalContent, ('manage_cutObjects', 'manage_pasteObjects',
                                'manage_renameForm', 'manage_renameObject',
-                               'manage_renameObjects')))
-
-    security.declareProtected(Permissions.copy_or_move, 'manage_copyObjects')
-
-    manage_renameObject = OrderedContainer.manage_renameObject
-
-    moveObject = OrderedContainer.moveObject
-    moveObjectsByDelta = OrderedContainer.moveObjectsByDelta
+                               'manage_renameObjects'))
+    )
 
     # Switch off ZMI ordering interface as it assumes a slightly
     # different functionality
@@ -212,5 +207,10 @@ class PloneSite(Container, SkinnableObjectManager, UniqueObject):
 
     def reindexObjectSecurity(self, skip_self=False):
         pass
+
+
+# Remove the IContentish interface so we don't listen to events that won't
+# apply to the site root, ie handleUidAnnotationEvent
+classImplementsOnly(PloneSite, implementedBy(PloneSite) - IContentish)
 
 InitializeClass(PloneSite)

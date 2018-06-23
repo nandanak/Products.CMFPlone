@@ -59,7 +59,7 @@ class TestActionsTool(PloneTestCase):
             self.fail_tb('Should not bomb out if a provider is missing')
 
     def testBrokenActionProvider(self):
-        self.portal.portal_types = None
+        self.portal.portal_types = self.portal.portal_catalog
         try:
             self.actions.listFilteredActionsFor(self.portal)
         except:
