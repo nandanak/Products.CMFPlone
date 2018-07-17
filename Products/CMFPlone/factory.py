@@ -135,8 +135,8 @@ def addPloneSite(context, site_id, title='Plone site', description='',
 
     notify(ObjectCreatedEvent(site))
 
-    context._setObject(site_id, site)
-    site = context._getOb(site_id)
+    context[site_id] = site
+    site = context[site_id]
 
     site.setLanguage(default_language)
     # Set the accepted language for the rest of the request.  This makes sure
