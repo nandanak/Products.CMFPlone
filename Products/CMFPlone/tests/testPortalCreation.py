@@ -78,10 +78,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase):
         # Plone skins should have been set up
         self.assertTrue(hasattr(self.folder, 'logo.png'))
 
-    def testDefaultSkin(self):
-        # index_html should render
-        self.portal.index_html()
-
     def testNoIndexHtmlDocument(self):
         # The portal should not contain an index_html Document
         self.assertFalse('index_html' in self.portal)
