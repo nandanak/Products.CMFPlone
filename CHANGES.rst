@@ -35,6 +35,9 @@ Bug fixes:
 - Add test for issue #2469.
   [jensens]
 
+- Add 'wait for element' to robot/test_tinymce.
+  [jaroel]
+
 
 5.1.3 (2018-06-22)
 ------------------
