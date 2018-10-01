@@ -4,6 +4,7 @@ from setuptools import find_packages
 
 version = '5.2a1.dev0'
 
+
 setup(
     name='Products.CMFPlone',
     version=version,
@@ -83,6 +84,7 @@ setup(
         'plone.registry',
         'plone.schema',
         'plone.session',
+        'plone.staticresources',
         'plone.subrequest',
         'plone.theme',
         'plonetheme.barceloneta',
