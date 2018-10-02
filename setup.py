@@ -154,8 +154,4 @@ setup(
             'zope.testing',
         ]
     },
-    entry_points="""\
-      [console_scripts]
-      plone-compile-resources = Products.CMFPlone._scripts.compile_resources:main
-    """  # noqa
 )
