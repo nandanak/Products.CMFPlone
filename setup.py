@@ -102,7 +102,6 @@ setup(
         'Products.PluggableAuthService',
         'Products.PluginRegistry',
         'Products.PortalTransforms',
-        'Products.ResourceRegistries',
         'Products.Sessions',
         'Products.SiteErrorLog',
         'Products.statusmessages',
