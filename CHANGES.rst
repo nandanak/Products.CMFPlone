@@ -10,13 +10,13 @@ Changelog
 
 Breaking changes:
 
+- Factor out all static resources and the ``plone-compile-resources`` script into plone.staticresources.
+  [thet]
+
 - Removed generateUniqueId.py skins script (after it was added to Products.Archetypes).
   This script is no longer available outside Archetypes world.
   #1801
   [jensens]
-- Factor out all static resources into plone.staticresources.
-- Factor out all static resources and the ``plone-compile-resources`` script into plone.staticresources.
-  [thet]
 
 - Remove all dependencies on plone.app.controlpanel.
   Third party code need either to depend on plone.app.controlpanel 4.0,
@@ -86,6 +86,23 @@ New features:
 
 - Rename safe_unicode to safe_text and safe_encode to safe_bytes. Keep old aliases.
   [pbauer]
+- Update to latest mockup
+  [frapell]
+
+- Provide an utility ``dump_json_to_text`` that works both on Python 2.7 an Python 3.
+  [ale-rt]
+
+- Prepare for Python 2 / 3 compatibility.
+  [pbauer]
+
+- Fix imports to work with Python 3.
+  [pbauer]
+
+- Mockup update.
+  [thet]
+
+- add link to Plone.org VPAT accessibility statement
+  [tkimnguyen]
 
 Bug fixes:
 
@@ -157,29 +174,6 @@ Bug fixes:
 
 - Remove ``plone-generate-gruntfile`` (it is all available through ``plone-compile-resources``).
   [jensens]
-
-
-New Features:
-
-- Update to latest mockup
-  [frapell]
-
-- Provide an utility ``dump_json_to_text`` that works both on Python 2.7 an Python 3.
-  [ale-rt]
-
-- Prepare for Python 2 / 3 compatibility.
-  [pbauer]
-
-- Fix imports to work with Python 3.
-  [pbauer]
-
-- Mockup update.
-  [thet]
-
-- add link to Plone.org VPAT accessibility statement
-  [tkimnguyen]
-
-Bug Fixes:
 
 - Remove last legacy Javascript ``highlight-searchterms.js``.
   Removes also the skins folder ``plone_ecmascript``.
