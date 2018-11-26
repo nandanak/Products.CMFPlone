@@ -5,7 +5,15 @@
 Changelog
 =========
 
-5.2a1 (unreleased)
+.. You should *NOT* be adding new change log entries to this file.
+   You should create a file in the news directory instead.
+   For helpful instructions, please see:
+   https://github.com/plone/plone.releaser/blob/master/ADD-A-NEWS-ITEM.rst
+
+.. towncrier release notes start
+
+
+5.2a1 (2018-11-08)
 ------------------
 
 Breaking changes:
@@ -103,6 +111,11 @@ New features:
 
 - add link to Plone.org VPAT accessibility statement
   [tkimnguyen]
+- Add a ``bin/instance verifydb`` command which can be used to check
+  that all records in the database can be successfully loaded.
+  This is intended to help with verifying a database conversion
+  from Python 2 to Python 3.
+  [davisagli]
 
 Bug fixes:
 
@@ -174,6 +187,32 @@ Bug fixes:
 
 - Remove ``plone-generate-gruntfile`` (it is all available through ``plone-compile-resources``).
   [jensens]
+
+- Migrate from ``slimit`` to ``calmjs.parse`` for the JavaScript cooker #2616
+  [metatoaster]
+
+
+New Features:
+
+- Update to latest mockup
+  [frapell]
+
+- Provide an utility ``dump_json_to_text`` that works both on Python 2.7 an Python 3.
+  [ale-rt]
+
+- Prepare for Python 2 / 3 compatibility.
+  [pbauer]
+
+- Fix imports to work with Python 3.
+  [pbauer]
+
+- Mockup update.
+  [thet]
+
+- add link to Plone.org VPAT accessibility statement
+  [tkimnguyen]
+
+Bug Fixes:
 
 - Remove last legacy Javascript ``highlight-searchterms.js``.
   Removes also the skins folder ``plone_ecmascript``.
